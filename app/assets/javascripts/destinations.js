@@ -1,35 +1,8 @@
-$(function(){
-  $(".js-destinations").on("click", function(e){
-    $.ajax({
-      method: "GET",
-      url: this.href
-    }).success(function(response){
-    })
-
+$(function() {
+  $("a.more_info").on("click", function(e) {
     $.get(this.href).success(function(response){
-      $("div.destinations").html(response)
+      $("div.more").html(response)
     })
-
-    $.get(this.href).success(function(json){
-
-      var $ol = $("div.destinations ol")
-      $ol.html("")
-
-      json.forEach(function(destination){
-
-        $ol.append("<li>" + destination.name + "</li>");
-      })
-    })
-
-    e.preventDefault();
-  })
-
- $(".js-destinations").on("click", function(e){
-   $.ajax({
-     url: this.href,
-     dataType: 'script'
-   })
-
-   e.preventDefault();
- })
+    e.preventDefault;
+  });
 })

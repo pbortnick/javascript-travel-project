@@ -1,24 +1,31 @@
-<%= link_to "Load Destinations", agent_destinations_path(@agent), class: "load_destinations" %>
+<h1><%= @agent.name %></h1>
+<br>
 
 
+
+<!-- <%= link_to "Load Destinations", agent_destinations_path(@agent), class: "load_destinations" %> -->
+
+<%= render 'destinations/destinations' %>
+
+<div class="destinations">
+  <ol>
+  </ol>
+</div>
 
 
 <br>
-<%= @agent.name %>
-<br>
+
 
 <p>Total Price of all Destinations: $<%= @total %></p>
 
 
-<!-- <p>See More Details about:</p>
-<% @agent.destinations.each do |destination| %>
-  <li><%= link_to destination.location, agent_destination_path(destination.agent, destination) %></li>
-<% end %> -->
 
 <br></br>
 
 <% if current_user %>
-  <%= link_to "New Destination", new_agent_destination_path(@agent) %>
+  <h2>Add New Destination</h2>
+  <!-- <%= link_to "New Destination", new_agent_destination_path(@agent) %> -->
+  <%= render 'destinations/form', url: agent_destinations_path(@agent, @destination) %>
 <% end %>
 
 <%= link_to 'Back', agents_path %>

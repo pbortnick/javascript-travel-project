@@ -2,14 +2,15 @@
 
 <h1>Destinations</h1>
 
-<% @all_destinations.each do |destination| %>
-  <li><%= link_to "#{destination.location}", destination %>
-    <% if current_user %>
-      <%= link_to 'Edit', edit_destination_path(destination) %>
-      <%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
+<ol>
+  <% @destinations.each do |destination| %>
+    <li>
+      <%= destination.location %><br>
+      <%= link_to "More Information",  destination_path(destination), class: "more_info" %>
   </li>
-<% end %>
+  <% end %>
+</ol>
+
 
 <br></br>
 

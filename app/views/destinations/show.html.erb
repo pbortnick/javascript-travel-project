@@ -1,5 +1,5 @@
-
-<h1><%= @destination.location %></h1><br>
+<li>
+<h1><%= @destination.location %></h1>
 
 <h3>Price: $<%= @destination.price %></h3><br>
 
@@ -14,3 +14,8 @@
 <% if current_user %>
   <%= link_to "Take this trip!", trip_path %>
 <% end %>
+
+</li>
+
+<div class="more">
+</div>

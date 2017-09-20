@@ -12,6 +12,11 @@ class AgentsController < ApplicationController
   def show
     @total = @agent.total
     @destinations = @agent.destinations
+    @destination = @agent.destinations.build
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @agent}
+    end
   end
 
   # GET /agents/new

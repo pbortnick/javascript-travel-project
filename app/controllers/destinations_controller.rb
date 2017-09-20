@@ -4,18 +4,18 @@ class DestinationsController < ApplicationController
   # GET /destinations
   # GET /destinations.json
   def index
-    @all_destinations = Destination.all
     @agent = Agent.find(params[:agent_id])
     @destinations = @agent.destinations
-    respond_to do |format|
-      format.html {render 'index.html', :layout => false}
-      format.js {render 'index.js', :layout => false}
-    end
+    render :layout => false
   end
 
   # GET /destinations/1
   # GET /destinations/1.json
   def show
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @destination}
+    end
   end
 
   # GET /destinations/new
@@ -30,12 +30,12 @@ class DestinationsController < ApplicationController
   # POST /destinations
   # POST /destinations.json
   def create
-    @destination = Destination.new(destination_params)
+    @destination = Destinations.build(destination_params)
     if @destination.valid?
       @destination.save
-      redirect_to root_path
+      render 'destinations/show', layout: false
     else
-      render :new, notice: 'Error in processing destination'
+      render 'agents/show
     end
   end
 
