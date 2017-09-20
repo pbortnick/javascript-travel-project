@@ -11,6 +11,7 @@ class AgentsController < ApplicationController
   # GET /agents/1.json
   def show
     @total = @agent.total
+    @destinations = @agent.destinations
   end
 
   # GET /agents/new

@@ -2,7 +2,7 @@
 
 <h1>Destinations</h1>
 
-<% @destinations.each do |destination| %>
+<% @all_destinations.each do |destination| %>
   <li><%= link_to "#{destination.location}", destination %>
     <% if current_user %>
       <%= link_to 'Edit', edit_destination_path(destination) %>

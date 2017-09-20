@@ -1,15 +1,24 @@
-<p id="notice"><%= notice %></p>
+<%= link_to "Load Destinations", agent_destinations_path(@agent), class: "load_destinations" %>
 
+
+
+
+<br>
 <%= @agent.name %>
 <br>
 
 <p>Total Price of all Destinations: $<%= @total %></p>
 
-<p>See More Details about:</p>
+
+<!-- <p>See More Details about:</p>
 <% @agent.destinations.each do |destination| %>
   <li><%= link_to destination.location, agent_destination_path(destination.agent, destination) %></li>
-<% end %>
+<% end %> -->
 
 <br></br>
+
+<% if current_user %>
+  <%= link_to "New Destination", new_agent_destination_path(@agent) %>
+<% end %>
 
 <%= link_to 'Back', agents_path %>

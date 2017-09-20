@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  get '/auth/facebook', to: redirect('/users/auth/facebook')
+  devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  get '/auth/github', to: redirect('/users/auth/github')
 
   resources :agents do
-    resources :destinations, only: [:show]
+    resources :destinations #, only: [:index, :show, :new]
   end
 
   resources :destinations

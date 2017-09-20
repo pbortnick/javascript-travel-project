@@ -4,7 +4,13 @@ class DestinationsController < ApplicationController
   # GET /destinations
   # GET /destinations.json
   def index
-    @destinations = Destination.all
+    @all_destinations = Destination.all
+    @agent = Agent.find(params[:agent_id])
+    @destinations = @agent.destinations
+    respond_to do |format|
+      format.html {render 'index.html', :layout => false}
+      format.js {render 'index.js', :layout => false}
+    end
   end
 
   # GET /destinations/1
@@ -14,7 +20,7 @@ class DestinationsController < ApplicationController
 
   # GET /destinations/new
   def new
-    @destination = Destination.new
+    @destination = Destination.new(agent_id: params[:agent_id])
   end
 
   # GET /destinations/1/edit
