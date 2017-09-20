@@ -1,4 +1,4 @@
-<h1><%= @agent.name %></h1>
+<h1 class="agentName"><%= @agent.name %></h1>
 <br>
 
 <%= link_to "Load Destinations", agent_destinations_path(@agent), class: "load_destinations" %>
@@ -17,5 +17,19 @@
   <%= f.text_field :location %>
   <%= f.submit %>
 <% end %>
+
+<a href="#" class="next" data-id="<%=@agent.id%>">Next Agent</a>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".next").on("click", function() {
+    var nextId = parseInt($(".next").attr("data-id")) + 1;
+    $.get("/agents/" + nextId + ".json", function(data) {
+      var agent = data;
+      $(".agentName").text(agent["name"])
+    });
+  });
+});
+</script>
 
 <%= link_to 'Back', agents_path %>

@@ -1,21 +1,44 @@
-<li>
-<h1><%= @destination.location %></h1>
+<h1 class="destinationLocation"><%= @destination.location %></h1>
 
-<!-- <h3>Price: $<%= @destination.price %></h3><br>
+<a href="#" class="more">More Info</a>
 
-<h3>Length: <%= @destination.trip_length %> days</h3><br>
 
-<h3>Weather Conditions: <%= @destination.weather %></h3><br>
+<div class="more">
 
-<% if @agent %>
+  <h3 class="destinationPrice">Price: $<%= @destination.price %></h3><br>
+
+  <h3 class="destinationLength">Length: <%= @destination.trip_length %> days</h3><br>
+
+  <h3 class="destinationWeather">Weather Conditions: <%= @destination.weather %></h3><br>
+
+</div>
+
+
+<a href="#" class="dest-next" data-id="<%=@agent.id%>">Next Agent</a>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $(".more").on("click", function() {
+    $("div.more").append {
+      var destination = data;
+      $(".destinationPrice").text(destination["price"]);
+      $(".destinationLength").text(destination["trip_length"]);
+      $(".destinationWeather").text(destination["weather"]);
+    });
+  });
+});
+</script>
+
+
+<!-- <% if @agent %>
   <h3>Travel Agent: <%= @destination.agent.name %></h3>
-<% end %>
+<% end %> -->
 
 <% if current_user %>
   <%= link_to "Take this trip!", trip_path %>
 <% end %>
 
-</li> -->
-<!-- 
+</li>
+
 <div class="more">
 </div> -->

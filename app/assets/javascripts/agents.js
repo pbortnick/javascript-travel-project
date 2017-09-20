@@ -1,5 +1,4 @@
 $(function() {
-  e.preventDefault
   $("a.load_destinations").on("click", function(e) {
     $.get(this.href).success(function(json){
       var $ol = $("div.destinations ol")
@@ -8,10 +7,25 @@ $(function() {
         $ol.append("<li>" + destination.location + "</li>")
       })
     })
+    e.preventDefault();
   })
 })
 
-
+$(function() {
+  $("#destination_location").on("submit", function(e){
+    $.ajax({
+      type: ($("input[name='_method']").val() || this.method),
+      url: this.href,
+      data: $(this).serialize();,
+      success: function(response) {
+        $("#destination_location").val("");
+        var $ol = $("div.destinations ol")
+        $ol.append(response);
+      }
+    });
+    e.preventDefault();
+  })
+})
 
 
 
