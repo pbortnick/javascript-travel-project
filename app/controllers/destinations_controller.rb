@@ -1,41 +1,43 @@
 class DestinationsController < ApplicationController
-  before_action :set_destination, only: [:show, :edit, :update, :destroy]
+  before_action :set_agent, only: [:index, :create]
 
   # GET /destinations
   # GET /destinations.json
   def index
-    @agent = Agent.find(params[:agent_id])
     @destinations = @agent.destinations
-    render :layout => false
+    respond_to do |format|
+      format.html {render 'index.html', :layout => false}
+      format.js {render 'index.js', :layout => false}
+    end
   end
 
   # GET /destinations/1
   # GET /destinations/1.json
-  def show
-    respond_to do |format|
-      format.html {render :show}
-      format.json {render json: @destination}
-    end
-  end
-
-  # GET /destinations/new
-  def new
-    @destination = Destination.new(agent_id: params[:agent_id])
-  end
-
-  # GET /destinations/1/edit
-  def edit
-  end
+  # def show
+  #   respond_to do |format|
+  #     format.html {render :show}
+  #     format.json {render json: @destination}
+  #   end
+  # end
+  #
+  # # GET /destinations/new
+  # def new
+  #   @destination = Destination.new(agent_id: params[:agent_id])
+  # end
+  #
+  # # GET /destinations/1/edit
+  # def edit
+  # end
 
   # POST /destinations
   # POST /destinations.json
   def create
-    @destination = Destinations.build(destination_params)
+    @destination = @agent.destinations.build(destination_params)
     if @destination.valid?
       @destination.save
-      render 'destinations/show', layout: false
+      render 'create.js', layout: false
     else
-      render 'agents/show
+      render 'agents/show'
     end
   end
 
@@ -61,10 +63,14 @@ class DestinationsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_destination
-      @destination = Destination.find(params[:id])
+
+    def set_agent
+      @agent = Agent.find(params[:agent_id])
     end
+    # Use callbacks to share common setup or constraints between actions.
+    # def set_destination
+    #   @destination = Destination.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def destination_params

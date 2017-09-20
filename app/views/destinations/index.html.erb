@@ -5,15 +5,15 @@
 <ol>
   <% @destinations.each do |destination| %>
     <li>
-      <%= destination.location %><br>
-      <%= link_to "More Information",  destination_path(destination), class: "more_info" %>
+      <%= destination.location %>
+      <!-- <%= link_to "More Information",  destination_path(destination), class: "more_info" %> -->
   </li>
   <% end %>
 </ol>
 
-
+<!--
 <br></br>
 
 <% if current_user %>
   <%= link_to "New Destination", new_destination_path %>
-<% end %>
+<% end %> -->

@@ -4,9 +4,6 @@
 
 <% @agents.each do |agent| %>
   <li><%= link_to "#{agent.name}", agent %>
-    <% if current_user %>
-      <%= link_to 'Destroy', agent, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
   </li>
 <% end %>
 

@@ -1,0 +1,3 @@
+$("#destination_location").val("");
+var $ol = $("div.destinations ol")
+$ol.append("<%=j(render('destinations/destination', destination: @destination))%>");
