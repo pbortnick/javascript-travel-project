@@ -17,6 +17,8 @@ class AgentsController < ApplicationController
   # GET /agents/new
   def new
     @agent = Agent.new
+    render :layout => :false
+    @destination = @agent.desintations.new
   end
 
   # GET /agents/1/edit

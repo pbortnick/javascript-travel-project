@@ -20,14 +20,14 @@ class DestinationsController < ApplicationController
   #   end
   # end
   #
-  # # GET /destinations/new
-  # def new
-  #   @destination = Destination.new(agent_id: params[:agent_id])
-  # end
-  #
-  # # GET /destinations/1/edit
-  # def edit
-  # end
+  # GET /destinations/new
+  def new
+    @destination = Destination.new(agent_id: params[:agent_id])
+  end
+
+  # GET /destinations/1/edit
+  def edit
+  end
 
   # POST /destinations
   # POST /destinations.json

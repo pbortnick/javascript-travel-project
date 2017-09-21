@@ -1,4 +1,17 @@
 $(function() {
+  $("#button").on("click", function(e){
+    var $button = $(this);
+    var url = $button.data("url")
+
+    $.get(url, function(){
+      $button.after("<%= j render('/destinations/form') %>")
+    })
+    e.preventDefault();
+  })
+})
+
+
+$(function() {
   $("a.load_destinations").on("click", function(e) {
     $.get(this.href).success(function(json){
       var $ol = $("div.destinations ol")
@@ -16,7 +29,7 @@ $(function() {
     $.ajax({
       type: ($("input[name='_method']").val() || this.method),
       url: this.href,
-      data: $(this).serialize();,
+      data: $(this).serialize(),
       success: function(response) {
         $("#destination_location").val("");
         var $ol = $("div.destinations ol")
@@ -31,36 +44,7 @@ $(function() {
 
 
 //
-// <%= form_for @destination do |f| %>
-//
-//   <p>
-//     <%= f.label :location%>
-//     <%= f.text_field :location%>
-//   </p>
-//
-//   <p>
-//     <%= f.label :price %>
-//     <%= f.text_field :price %>
-//   </p>
-//
-//   <p>
-//     <%= f.label :trip_length_in_days %>
-//     <%= f.text_field :trip_length %>
-//   </p>
-//
-//   <p>
-//     <%= f.label :weather_conditions %>
-//     <%= f.text_field :weather %>
-//   </p>
-//
-//   <p>
-//     <%= f.label :travel_agent %>
-//     <%= f.text_field :agent_id %>
-//   </p>
-//
-//   <%= f.submit %>
-// <% end %>
-//
+
 //
 // $(function() {
 //   $("a.load_destinations").on("click", function(e) {

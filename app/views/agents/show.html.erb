@@ -11,15 +11,13 @@
 
 <br>
 
-<h2> Add New Destination </h2>
-<%= form_for(@destination, url: agent_destinations_path(@agent)) do |f| %>
-  <%= f.label :location %>
-  <%= f.text_field :location %>
-  <%= f.submit %>
-<% end %>
+<%=render 'destinations/form'%>
+
+<br>
 
 <a href="#" class="next" data-id="<%=@agent.id%>">Next Agent</a>
 
+<br>
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".next").on("click", function() {

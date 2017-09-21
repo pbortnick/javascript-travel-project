@@ -1,6 +1,6 @@
 <h1 class="destinationLocation"><%= @destination.location %></h1>
 
-<a href="#" class="more">More Info</a>
+<a href="#" class="dest-more">More Info</a>
 
 
 <div class="more">
@@ -18,12 +18,10 @@
 
 <script type="text/javascript" charset="utf-8">
 $(function() {
-  $(".more").on("click", function() {
-    $("div.more").append {
-      var destination = data;
-      $(".destinationPrice").text(destination["price"]);
-      $(".destinationLength").text(destination["trip_length"]);
-      $(".destinationWeather").text(destination["weather"]);
+  $(".dest-more").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/desintations" + id + "/destination_data", function(data){
+      $("div.more" + id).html(data["price"], data["trip_length"], data["weather"])
     });
   });
 });

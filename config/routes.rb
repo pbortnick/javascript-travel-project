@@ -14,4 +14,6 @@ Rails.application.routes.draw do
 
   get '/trip' => "application#trip"
 
+  get '/agents/destinations/new' => "agents#new"
+
 end
