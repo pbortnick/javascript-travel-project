@@ -11,23 +11,15 @@
 
 <br>
 
-<%=render 'destinations/form'%>
+<div class="form">
+</div>
 
-<br>
+<button id="button" data-url="/agents/destinations/new">Add new destination</button>
+
+<br></br>
 
 <a href="#" class="next" data-id="<%=@agent.id%>">Next Agent</a>
 
-<br>
-<script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".next").on("click", function() {
-    var nextId = parseInt($(".next").attr("data-id")) + 1;
-    $.get("/agents/" + nextId + ".json", function(data) {
-      var agent = data;
-      $(".agentName").text(agent["name"])
-    });
-  });
-});
-</script>
+<br></br>
 
 <%= link_to 'Back', agents_path %>

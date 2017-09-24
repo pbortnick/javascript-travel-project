@@ -1,42 +1,17 @@
 <h1 class="destinationLocation"><%= @destination.location %></h1>
 
-<a href="#" class="dest-more">More Info</a>
+<button class="dest-more" data-id="<%=@destination.id%>">More Info</button>
 
 
-<div class="more">
+<div id="more-<%= @destination.id %>">
 
-  <h3 class="destinationPrice">Price: $<%= @destination.price %></h3><br>
-
-  <h3 class="destinationLength">Length: <%= @destination.trip_length %> days</h3><br>
-
-  <h3 class="destinationWeather">Weather Conditions: <%= @destination.weather %></h3><br>
 
 </div>
 
 
-<a href="#" class="dest-next" data-id="<%=@agent.id%>">Next Agent</a>
-
-<script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".dest-more").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/desintations" + id + "/destination_data", function(data){
-      $("div.more" + id).html(data["price"], data["trip_length"], data["weather"])
-    });
-  });
-});
-</script>
-
-
-<!-- <% if @agent %>
-  <h3>Travel Agent: <%= @destination.agent.name %></h3>
-<% end %> -->
 
 <% if current_user %>
   <%= link_to "Take this trip!", trip_path %>
 <% end %>
 
 </li>
-
-<div class="more">
-</div> -->

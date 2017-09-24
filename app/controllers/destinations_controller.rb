@@ -7,18 +7,19 @@ class DestinationsController < ApplicationController
     @destinations = @agent.destinations
     respond_to do |format|
       format.html {render 'index.html', :layout => false}
-      format.js {render 'index.js', :layout => false}
+      format.json {render json: @destinations}
     end
   end
 
   # GET /destinations/1
   # GET /destinations/1.json
-  # def show
-  #   respond_to do |format|
-  #     format.html {render :show}
-  #     format.json {render json: @destination}
-  #   end
-  # end
+  def show
+    @destination = Destination.find(params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @destination}
+    end
+  end
   #
   # GET /destinations/new
   def new

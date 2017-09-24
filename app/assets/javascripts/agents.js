@@ -1,11 +1,8 @@
 $(function() {
   $("#button").on("click", function(e){
-    var $button = $(this);
-    var url = $button.data("url")
-
-    $.get(url, function(){
-      $button.after("<%= j render('/destinations/form') %>")
-    })
+    // var $button = $(this);
+    // var url = $button.data("url");
+    $(".form").html("<%= javascript_escape('/destinations/fields') %>")
     e.preventDefault();
   })
 })
@@ -13,7 +10,8 @@ $(function() {
 
 $(function() {
   $("a.load_destinations").on("click", function(e) {
-    $.get(this.href).success(function(json){
+
+    $.get(this.href + ".json").success(function(json){
       var $ol = $("div.destinations ol")
       $ol.html("")
       json.forEach(function(destination){
@@ -24,21 +22,35 @@ $(function() {
   })
 })
 
+// $(function() {
+//   $("#destination_location").on("submit", function(e){
+//     $.ajax({
+//       type: ($("input[name='_method']").val() || this.method),
+//       url: this.href,
+//       data: $(this).serialize(),
+//       success: function(response) {
+//         $("#destination_location").val();
+//         $("#destination_price").val();
+//         $("#destination_trip_length").val();
+//         $("#destination_weather").val();
+//
+//         var $ol = $("div.destinations ol")
+//         $ol.append(response);
+//       }
+//     });
+//     e.preventDefault();
+//   })
+// })
+
 $(function() {
-  $("#destination_location").on("submit", function(e){
-    $.ajax({
-      type: ($("input[name='_method']").val() || this.method),
-      url: this.href,
-      data: $(this).serialize(),
-      success: function(response) {
-        $("#destination_location").val("");
-        var $ol = $("div.destinations ol")
-        $ol.append(response);
-      }
+  $(".next").on("click", function() {
+    var nextId = parseInt($(".next").attr("data-id")) + 1;
+    $.get("/agents/" + nextId + ".json", function(data) {
+      var agent = data;
+      $(".agentName").text(agent["name"])
     });
-    e.preventDefault();
-  })
-})
+  });
+});
 
 
 
