@@ -1,6 +1,6 @@
 ## Synopsis
 
-This Rails project has models for users, agents, and destination. It allows users to choose a destination given its location, price, length of trip, and weather conditions. Each destination has a travel agent. It uses Devise for login authentication.
+This Rails project has models for users, agents, and destination. It allows users to choose a destination given its location, price, length of trip, and weather conditions. Each destination has a travel agent. It uses Devise for login authentication. It implements jQuery for enhanced functionality.
 
 ## Install instructions
 
