@@ -3,12 +3,20 @@
 
 <% @destinations.each do |destination| %>
   <li><%= link_to "#{destination.location}", destination %>
+    <button class="dest-more" data-id="<%=destination.id%>">More Info</button>
+    <div id="more-<%= destination.id %>">
+      <p class="price"></p>
+      <p class="trip_length"></p>
+      <p class="weather"></p>
+    </div>
     <% if current_user %>
       <%= link_to 'Edit', edit_destination_path(destination) %>
       <%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
-  </li>
+  </li><br>
 <% end %>
+
+
 
 <br></br>
 
@@ -27,3 +35,19 @@
 <% if current_user %>
   <%= link_to "New Destination", new_destination_path %>
 <% end %>
+
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".dest-more").on('click', function(e) {
+    var id = $(this).data("id");
+    $.get("/destinations/" + id + ".json", function(data) {
+      var destination = data;
+      $("#more-" + id).append("Price: $" + destination["price"] + "<br>");
+      $("#more-" + id).append("Trip Length: " + destination["trip_length"] + " days" + "<br>");
+      $("#more-" + id).append("Weather: " + destination["weather"]);
+    });
+    e.preventDefault();
+  });
+});
+</script>

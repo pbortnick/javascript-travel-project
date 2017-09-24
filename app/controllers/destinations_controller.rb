@@ -1,9 +1,9 @@
 class DestinationsController < ApplicationController
-  before_action :set_agent, only: [:index, :create]
 
   # GET /destinations
   # GET /destinations.json
   def index
+    @agent = Agent.find(params[:agent_id])
     @destinations = @agent.destinations
     respond_to do |format|
       format.html {render 'index.html', :layout => false}
@@ -33,12 +33,17 @@ class DestinationsController < ApplicationController
   # POST /destinations
   # POST /destinations.json
   def create
-    @destination = @agent.destinations.build(destination_params)
-    if @destination.valid?
-      @destination.save
-      render 'create.js', layout: false
-    else
-      render 'agents/show'
+    @destination = Destination.new(destination_params)
+
+    respond_to do |format|
+      if @destination.save
+        @agent = @destination.agent
+        format.html { redirect_to @agent, notice: 'Destination was successfully created.' }
+        format.json { render :show, status: :created, location: @destination }
+      else
+        format.html { render :new }
+        format.json { render json: @destination.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -55,19 +60,20 @@ class DestinationsController < ApplicationController
   # DELETE /destinations/1
   # DELETE /destinations/1.json
   def destroy
+    @destination = Destination.find(params[:id])
     @destination.destroy
     respond_to do |format|
-      format.html { redirect_to destinations_url, notice: 'Destination was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Destination was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
 
   private
-
-    def set_agent
-      @agent = Agent.find(params[:agent_id])
-    end
+    #
+    # def set_agent
+    #   @agent = Agent.find(params[:agent_id])
+    # end
     # Use callbacks to share common setup or constraints between actions.
     # def set_destination
     #   @destination = Destination.find(params[:id])

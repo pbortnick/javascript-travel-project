@@ -9,10 +9,14 @@
   </ol>
 </div>
 
-<br>
+
+<div id="more-<%= @destination.id %>">
+</div>
 
 <div class="form">
 </div>
+
+<br>
 
 <button id="button" data-url="/agents/destinations/new">Add new destination</button>
 
@@ -23,3 +27,12 @@
 <br></br>
 
 <%= link_to 'Back', agents_path %>
+
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $("#button").on("click", function(e){
+    $(".form").prepend("<%=j(render partial: 'fields')%>");
+    e.preventDefault();
+  })
+})
+</script>
