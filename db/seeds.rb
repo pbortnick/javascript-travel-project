@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-agent1 = Agent.create(name: 'Pam')
+agent1 = Agent.create(first_name: 'Pam', last_name: 'Bortnick')
 
-agent2 = Agent.create(name: 'Jason')
+agent2 = Agent.create(first_name: 'Jason', last_name: 'Smith')
 
 
 destination1 = Destination.create(location: 'New York City', price: 1000, trip_length: 5, weather: 'varies', agent_id: 1)

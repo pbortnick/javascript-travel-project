@@ -11,4 +11,8 @@ class Agent < ApplicationRecord
   has_many :users
   has_many :destinations
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end

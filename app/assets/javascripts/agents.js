@@ -17,7 +17,7 @@ $(function() {
     var nextId = parseInt($(".next").attr("data-id")) + 1;
     $.get("/agents/" + nextId + ".json", function(data) {
       var agent = data;
-      $(".agentName").text(agent["name"])
+      $(".agentName").text(agent.full_name)
     });
   });
 });
