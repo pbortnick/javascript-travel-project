@@ -20,15 +20,15 @@ $(function() {
     $.get("/agents/" + nextId + ".json", function(data) {
       var agent = data;
       function Name(first_name, last_name) {
-        agent.first_name = first_name;
-        agent.last_name  = last_name;
+        this.first_name = first_name;
+        this.last_name  = last_name;
       }
 
       Name.prototype.fullName = function () {
-        return agent.first_name + " " + agent.last_name;
+        return this.first_name + " " + this.last_name;
       }
       debugger;
-      $(".agentName").text(fullName())
+      $(".agentName").text(agent.fullName())
     });
   });
 });
