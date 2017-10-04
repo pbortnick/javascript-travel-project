@@ -13,4 +13,4 @@ agent2 = Agent.create(first_name: 'Jason', last_name: 'Smith')
 
 destination1 = Destination.create(location: 'New York City', price: 1000, trip_length: 5, weather: 'varies', agent_id: 1)
 
-destination2 = Destination.create(location: 'California', price: 1500, trip_length: 10, weather: 'warm', agent_id: 4)
+destination2 = Destination.create(location: 'California', price: 1500, trip_length: 10, weather: 'warm', agent_id: 2)

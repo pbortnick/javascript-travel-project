@@ -1,1 +1,1 @@
-json.extract! @agent, :id, :name
+json.extract! @agent, :id, :first_name, :last_name
