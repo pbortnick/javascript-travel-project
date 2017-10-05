@@ -1,5 +1,14 @@
+// $(function () {
+//   $("a.load_destinations").on('click', function() {
+//     var id = $(this).data("id");
+//     $.get("/agents/" + id + "destinations", function(data) {
+//       $("div.destinations ol").html(data["destination.location"]);
+//     });
+//   });
+// });
+
 $(function() {
-  $("a.load_destinations").on("click", function(e) {
+  $("a.load_destinations").on("click", function(data) {
     $.get(this.href + ".json").success(function(json){
       var $ol = $("div.destinations ol")
       $ol.html("")
@@ -7,7 +16,7 @@ $(function() {
         $ol.append("<li>" + destination.location + "</li>")
       })
     })
-    e.preventDefault();
+    data.preventDefault();
   })
 })
 
@@ -21,13 +30,12 @@ Name.prototype.fullName = function () {
 }
 
 $(function() {
-  $(".next").on("click", function() {
+  $(".js-next").on("click", function() {
 
-    var nextId = parseInt($(".next").attr("data-id")) + 1;
-
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/agents/" + nextId + ".json", function(data) {
+      $(".js-next").attr("href", "/agents/" + nextId);
       agent = new Name(data.first_name, data.last_name)
-      $(".next").attr("data-id", data.id);
       $(".agentName").text(agent.fullName());
       $(".destinations ol").empty();
     });
