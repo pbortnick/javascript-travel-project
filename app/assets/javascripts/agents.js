@@ -11,6 +11,14 @@ $(function() {
   })
 })
 
+function Name(first_name, last_name) {
+  this.first_name = first_name;
+  this.last_name  = last_name;
+}
+
+Name.prototype.fullName = function () {
+  return this.first_name + " " + this.last_name;
+}
 
 $(function() {
   $(".next").on("click", function() {
@@ -18,17 +26,10 @@ $(function() {
     var nextId = parseInt($(".next").attr("data-id")) + 1;
 
     $.get("/agents/" + nextId + ".json", function(data) {
-      var agent = data;
-      function Name(first_name, last_name) {
-        this.first_name = first_name;
-        this.last_name  = last_name;
-      }
-
-      Name.prototype.fullName = function () {
-        return this.first_name + " " + this.last_name;
-      }
-      debugger;
-      $(".agentName").text(agent.fullName())
+      agent = new Name(data.first_name, data.last_name)
+      $(".next").attr("data-id", data.id);
+      $(".agentName").text(agent.fullName());
+      $(".destinations ol").empty();
     });
   });
 });
