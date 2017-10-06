@@ -16,4 +16,8 @@ Rails.application.routes.draw do
 
   get '/agents/destinations/new' => "agents#new"
 
+  # get '/agents/:id/agent_data', to: 'agents#agent_data'
+
+  get '/destinations/:id/destination_data', to: 'destinations#destination_data'
+
 end

@@ -1,5 +1,7 @@
 class Agent < ApplicationRecord
 
+  serialize :preferences
+
   def total
     destination_total = 0
     self.destinations.each do |dest|

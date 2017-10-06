@@ -65,6 +65,11 @@ class AgentsController < ApplicationController
     end
   end
 
+  # def agent_data
+  #   agent = Agent.find(params[:id])
+  #   render json: AgentSerializer.serialize(agent)
+  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agent

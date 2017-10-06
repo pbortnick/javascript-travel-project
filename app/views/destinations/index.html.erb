@@ -1,19 +1,24 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Destinations</h1>
 
-<ol>
-  <% @destinations.each do |destination| %>
-    <li>
-      <%= destination.location %>
-      <!-- <%= link_to "More Information",  destination_path(destination), class: "more_info" %> -->
-  </li>
-  <% end %>
-</ol>
+<% @destinations.each do |destination| %>
+  <%= render partial: "destination", locals: {destination: destination} %>
+<% end %>
 
-<!--
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+$(function () {
+  $(".dest-more").on('click', function() {
+    var id = $(this).data("id");
+    $.get("/destinations/" + id + "/destination_data", function(data) {
+      $("#price-" + id).append(data["price"]);      $("#trip_length-" + id).append(data["trip_length"]);
+      $("#weather-" + id).append(data["weather"]);
+    });
+  });
+});
+</script>
+
+
 <br></br>
 
 <% if current_user %>
   <%= link_to "New Destination", new_destination_path %>
-<% end %> -->
+<% end %>

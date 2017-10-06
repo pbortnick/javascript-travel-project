@@ -3,8 +3,7 @@ class DestinationsController < ApplicationController
   # GET /destinations
   # GET /destinations.json
   def index
-    @agent = Agent.find(params[:agent_id])
-    @destinations = @agent.destinations
+    @destinations = Destination.all
     respond_to do |format|
       format.html {render 'index.html', :layout => false}
       format.json {render json: @destinations}
@@ -68,6 +67,10 @@ class DestinationsController < ApplicationController
     end
   end
 
+  def destination_data
+    destination = Destination.find(params[:id])
+    render json: DestinationSerializer.serialize(destination)
+  end
 
   private
     #
@@ -81,6 +84,6 @@ class DestinationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def destination_params
-      params.require(:destination).permit(:location, :price, :trip_length, :weather, :agent_id)
+      params.require(:destination).permit(:location, :price, :trip_length, :weather, :agent_id, :agent_name)
     end
 end

@@ -1,6 +1,6 @@
 <h1 class="destinationLocation"><%= @destination.location %></h1>
 
-<button class="dest-more" data-id="<%=@destination.id%>">More Info</button>
+<!-- <button class="dest-more" data-id="<%=@destination.id%>">More Info</button> -->
 
 
 <div id="more-<%= @destination.id %>">
@@ -8,16 +8,22 @@
 
 </div>
 
-<div class = "price"> <%= @destination.price %> </div>
+<h2>Price: </h2><div class = "price"> <%= @destination.price %> </div>
 
-<div class = "trip_length"> <%= @destination.trip_length %> </div>
+<h2>Trip Length: </h2><div class = "trip_length"> <%= @destination.trip_length %> </div>
 
-<div class = "weather"> <%= @destination.weather %> </div>
+<h2>Weather Conditions: </h2><div class = "weather"> <%= @destination.weather %> </div>
 
+<a href="#" class="js-next-destination" data-id="<%=@destination.id%>">Next Destination</a>
 
+<br>
 
 <% if current_user %>
   <%= link_to "Take this trip!", trip_path %>
 <% end %>
+
+<br>
+
+<%= link_to 'Back', destinations_path %>
 
 </li>
