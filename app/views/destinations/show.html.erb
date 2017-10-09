@@ -4,15 +4,19 @@
 
 
 <div id="more-<%= @destination.id %>">
-
-
 </div>
 
-<h2>Price: </h2><div class = "price"> <%= @destination.price %> </div>
+<div class="price" id="price-<%= @destination.id %>"></div>
 
-<h2>Trip Length: </h2><div class = "trip_length"> <%= @destination.trip_length %> </div>
+<div class="trip-length" id="trip_length-<%= @destination.id %>"></div>
 
-<h2>Weather Conditions: </h2><div class = "weather"> <%= @destination.weather %> </div>
+<div class="weather" id="weather-<%= @destination.id %>"></div>
+
+<br></br>
+
+<a href="#" class="dest-more" data-id="<%=@destination.id%>">More Info</a>
+
+<br>
 
 <a href="#" class="js-next-destination" data-id="<%=@destination.id%>">Next Destination</a>
 

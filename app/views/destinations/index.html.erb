@@ -1,21 +1,10 @@
 <h1>Destinations</h1>
 
 <% @destinations.each do |destination| %>
-  <%= render partial: "destination", locals: {destination: destination} %>
+  <li>
+    <%= link_to destination.location, destination_path(destination) %>
+  </li>
 <% end %>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-$(function () {
-  $(".dest-more").on('click', function() {
-    var id = $(this).data("id");
-    $.get("/destinations/" + id + "/destination_data", function(data) {
-      $("#price-" + id).append(data["price"]);      $("#trip_length-" + id).append(data["trip_length"]);
-      $("#weather-" + id).append(data["weather"]);
-    });
-  });
-});
-</script>
-
 
 <br></br>
 

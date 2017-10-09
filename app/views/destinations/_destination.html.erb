@@ -1,9 +1,1 @@
-<h2><%= destination.location %></h2>
-
-<div id="price-<%= destination.id %>"></div>
-
-<div id="trip_length-<%= destination.id %>"></div>
-
-<div id="weather-<%= destination.id %>"></div>
-
-<button class="dest-more" data-id="<%=destination.id%>">More Info</button>
+<h2><%= link_to destination.location, destination_path %></h2>
