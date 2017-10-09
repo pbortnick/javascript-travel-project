@@ -10,8 +10,12 @@ class AgentsController < ApplicationController
   # GET /agents/1
   # GET /agents/1.json
   def show
-    @destinations = @agent.destinations
     @destination = Destination.new
+    @agent = Agent.find(params[:id])
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @agent}
+    end
   end
 
   # GET /agents/new

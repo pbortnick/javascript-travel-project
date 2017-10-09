@@ -1,15 +1,13 @@
-$(function() {
-  $("a.load_destinations").on("click", function(e) {
-    $.get(this.href + ".json").success(function(json){
-      var $ol = $("div.destinations ol")
-      $ol.html("")
-      json.forEach(function(destination){
-        $ol.append("<li>" + destination.location + "</li>")
+$(function () {
+  $("a.load").on("click", function() {
+    var id = $(this).data("id");
+    $.get("/agents/" + id + ".json", function(data) {
+      data.destinations.forEach(function(destination) {
+        $(".destinations ol").append("<li>"+ destination.location + "</li>");
       })
-    })
-    e.preventDefault();
-  })
-})
+    });
+  });
+});
 
 function Name(first_name, last_name) {
   this.first_name = first_name;
@@ -27,10 +25,12 @@ $(function() {
 
     $.get("/agents/" + nextId + ".json", function(data) {
       $(".js-next").attr("data-id", data["id"]);
-      agent = new Name(data["first_name"], data["last_name"])
+      agent = new Name(data["first_name"], data["last_name"]);
+      $("a.load").empty();
       $(".agentName").text(agent.fullName());
-      $(".destinations ol").empty();
-      destinations = data.destinations
+      data.destinations.forEach(function(destination) {
+        $(".destinations ol").html("<li>"+ destination.location + "</li>");
+      });
     });
   });
 });

@@ -1,16 +1,12 @@
 <h1 class="agentName"><%= @agent.full_name %></h1>
 <br>
 
-<%= link_to "Load Destinations", agent_destinations_path(@agent), class: "load_destinations" %>
+<a href="#" class="load" data-id="<%=@agent.id%>">Load Destinations</a>
 
 
 <div class="destinations">
   <ol>
   </ol>
-</div>
-
-
-<div id="more-<%= @destination.id %>">
 </div>
 
 <div class="form">
