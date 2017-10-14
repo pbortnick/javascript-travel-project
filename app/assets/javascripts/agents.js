@@ -24,12 +24,13 @@ $(function() {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 
     $.get("/agents/" + nextId + ".json", function(data) {
-      $(".js-next").attr("data-id", data["id"]);
-      agent = new Name(data["first_name"], data["last_name"]);
+      $(".js-next").attr("data-id", data.id);
+      agent = new Name(data.first_name, data.last_name);
       $("a.load").empty();
+      $(".form").empty();
       $(".agentName").text(agent.fullName());
       data.destinations.forEach(function(destination) {
-        $(".destinations ol").html("<li>"+ destination.location + "</li>");
+        $(".destinations ol").html("<li>"+ destination.location + "</li>")
       });
     });
   });
