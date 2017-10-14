@@ -25,10 +25,6 @@ class DestinationsController < ApplicationController
     @destination = Destination.new(agent_id: params[:agent_id])
   end
 
-  # GET /destinations/1/edit
-  def edit
-  end
-
   # POST /destinations
   # POST /destinations.json
   def create

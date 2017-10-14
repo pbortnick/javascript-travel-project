@@ -1,5 +1,9 @@
 class Agent < ApplicationRecord
 
+  has_many :users
+  has_many :destinations
+  accepts_nested_attributes_for :users, :destinations
+
   serialize :preferences
 
   def total
@@ -9,9 +13,6 @@ class Agent < ApplicationRecord
     end
     destination_total
   end
-
-  has_many :users
-  has_many :destinations
 
   def full_name
     "#{first_name} #{last_name}"
