@@ -16,5 +16,5 @@ Confirm
 - [x] You don't include changes in a commit that aren't related to the commit message
 
 Fixes
-- [] Make form dynamic with on 'submit'
+- [x] Make form dynamic with on 'submit'
 - [x] Ajax request to agents/1/destinations

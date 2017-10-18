@@ -15,13 +15,14 @@ $(function () {
   $(".dest-index-more").on('click', function(e) {
     var id = $(this).data("id");
     $.get("/destinations/" + id + ".json", function(data) {
+
       destDifference = new PriceCheck(data.price)
       var destination = data;
 
-      $("#more-" + id).append("Price: $" + destination.price + "<br>");
+      $("#more-" + id).append("<br>Price: $" + destination.price + "<br>");
       $("#more-" + id).append("Trip Length: " + destination.trip_length + " days" + "<br>");
       $("#more-" + id).append("Weather: " + destination.weather + "<br>");
-      $("#more-" + id).append("Agent: " + destination.agent.first_name + "<br>");
+      $("#more-" + id).append("Agent: " + destination.agent.first_name + "<br></br>");
       $("#more-" + id).append(destDifference.comparison());
     });
     e.preventDefault();

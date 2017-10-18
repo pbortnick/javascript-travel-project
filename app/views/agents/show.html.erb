@@ -1,7 +1,7 @@
 <h1 class="agentName"><%= @agent.full_name %></h1>
 <br>
 
-<a href="#" class="load" data-id="<%=@agent.id%>">Load Destinations</a>
+<a href="#" class="load" data-id="<%=@agent.id%>">Load Destinations And Add New</a>
 
 
 <div class="destinations">
@@ -9,7 +9,10 @@
   </ol>
 </div>
 
-<%= form_for([@agent, @destination]) do |f|  %>
+<p>Add New Destination for <%=@agent.first_name%>:</p>
+
+<div class="new_destination_agent" style="display:none">
+<%= form_for([@agent, @destination]) do |f|%>
    <p>
      <%= f.label :location%>
      <%= f.text_field :location%>
@@ -32,14 +35,11 @@
 
    <%= f.submit :id=> "a-d-submit" %>
 <% end %>
-
+</div>
 
 <br>
 
-<br></br>
-
 <!-- <a href="#" class="js-next" data-id="<%=@agent.id%>">Next Agent</a> -->
 
-<br></br>
 
 <%= link_to 'Back', agents_path %>

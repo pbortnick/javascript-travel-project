@@ -1,4 +1,18 @@
 $(function () {
+  $("a.load").on("click", function() {
+    // $('.destinations ol li:last-child').remove();
+    // $(".destinations").show();
+    $(".new_destination_agent").show();
+    var id = $(this).data("id");
+    $.get("/agents/" + id + "/destinations.json", function(data) {
+      data.map(function(destination) {
+        $(".destinations ol").append("<li><a href=destinations/" + destination.id +">" + destination.location + "</a></li>");
+      })
+    });
+  });
+});
+
+$(function () {
   $("#new_destination").on("submit", function(e) {
     e.preventDefault();
     var form = this;
@@ -28,7 +42,7 @@ $(function () {
         $button = $('#a-d-submit')
         $.rails.enableElement($button)
         $button.removeAttr('disabled')
-        $('.destinations ol li:first-child').remove();
+        // $('.destinations ol li:first-child').remove();
       }
     })
   });
@@ -70,20 +84,6 @@ $(function () {
 //     });
 //   });
 // })
-
-$(function () {
-  $("a.load").on("click", function() {
-    // $('.destinations ol li:last-child').remove();
-    // $(".destinations").show();
-    var id = $(this).data("id");
-    $.get("/agents/" + id + "/destinations.json", function(data) {
-      data.map(function(destination) {
-        $(".destinations ol").append("<li><a href=destinations/" + destination.id +">" + destination.location + "</a></li>");
-      })
-    });
-  });
-});
-
 
 // function Name(first_name, last_name) {
 //   this.first_name = first_name;
