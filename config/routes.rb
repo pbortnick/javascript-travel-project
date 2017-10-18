@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :users
 
   root "application#home"
-
+  get '/least_expensive' => "application#least_expensive"
   get '/trip' => "application#trip"
 
   get '/agents/destinations/new' => "agents#new"

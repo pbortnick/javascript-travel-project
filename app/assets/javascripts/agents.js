@@ -84,32 +84,33 @@ $(function () {
   });
 });
 
-function Name(first_name, last_name) {
-  this.first_name = first_name;
-  this.last_name  = last_name;
-}
 
-Name.prototype.fullName = function () {
-  return this.first_name + " " + this.last_name;
-}
+// function Name(first_name, last_name) {
+//   this.first_name = first_name;
+//   this.last_name  = last_name;
+// }
+//
+// Name.prototype.fullName = function () {
+//   return this.first_name + " " + this.last_name;
+// }
 
-$(function() {
-  $(".js-next").on("click", function() {
-
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-
-    $.get("/agents/" + nextId + ".json", function(data) {
-      $(".destinations ol").empty();
-      $(".js-next").attr("data-id", data.id);
-      agent = new Name(data.first_name, data.last_name);
-      $("a.load").empty();
-      // $(".form").empty();
-      $(".agentName").text(agent.fullName());
-    })
-    $.get("/agents/" + nextId + "/destinations.json", function(data) {
-      data.map(function(destination) {
-        $(".destinations ol").append("<li><a href=destinations/" + destination.id +">" + destination.location + "</a></li>");
-      })
-    });
-  });
-});
+// $(function() {
+//   $(".js-next").on("click", function() {
+//
+//     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+//
+//     $.get("/agents/" + nextId + ".json", function(data) {
+//       $(".destinations ol").empty();
+//       $(".js-next").attr("data-id", data.id);
+//       agent = new Name(data.first_name, data.last_name);
+//       $("a.load").empty();
+//       // $(".form").empty();
+//       $(".agentName").text(agent.fullName());
+//     })
+//     $.get("/agents/" + nextId + "/destinations.json", function(data) {
+//       data.map(function(destination) {
+//         $(".destinations ol").append("<li><a href=destinations/" + destination.id +">" + destination.location + "</a></li>");
+//       })
+//     });
+//   });
+// });

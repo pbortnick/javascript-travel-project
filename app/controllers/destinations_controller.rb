@@ -1,6 +1,6 @@
 class DestinationsController < ApplicationController
 
-  before_action :set_agent, except: [:show]
+  before_action :set_agent, except: [:show, :destroy]
 
   # GET /destinations
   # GET /destinations.json

@@ -16,7 +16,20 @@
   </li><br>
 <% end %>
 
+<style type="text/css">
+  div#least {
+    display:none;
+  }
+</style>
 
+<div id="least">
+  <div id="least-price">
+    <%= @destination.price %>
+  </div>
+  <div id="least-location">
+    <%= @destination.location %>
+  </div>
+</div>
 
 <br></br>
 
@@ -24,7 +37,7 @@
 
 <br></br>
 
-<h3>Least expensive trip: </h3><%= least_expensive %>
+<h3 id="least_expensive">Least expensive trip: </h3><%= least_expensive %>
 
 <br></br>
 
