@@ -4,17 +4,36 @@
 <a href="#" class="load" data-id="<%=@agent.id%>">Load Destinations</a>
 
 
-<div class="destinations">
-  <ol>
-  </ol>
+<div class="destinations" style="display:none">
+  <%= render 'destinations/destinations' %>
 </div>
 
-<div class="form">
-</div>
+<%= form_for([@agent, @destination]) do |f|  %>
+   <p>
+     <%= f.label :location%>
+     <%= f.text_field :location%>
+   </p>
+
+   <p>
+     <%= f.label :price %>
+     <%= f.text_field :price %>
+   </p>
+
+   <p>
+     <%= f.label :trip_length_in_days %>
+     <%= f.text_field :trip_length %>
+   </p>
+
+   <p>
+     <%= f.label :weather_conditions %>
+     <%= f.text_field :weather %>
+   </p>
+
+   <%= f.submit :id=> "a-d-submit" %>
+<% end %>
+
 
 <br>
-
-<button id="button" data-url="/agents/destinations/new">Add new destination</button>
 
 <br></br>
 
@@ -23,12 +42,3 @@
 <br></br>
 
 <%= link_to 'Back', agents_path %>
-
-<script type="text/javascript" charset="utf-8">
-$(function() {
-  $("#button").on("click", function(e){
-    $(".form").prepend("<%=j(render partial: 'fields')%>");
-    e.preventDefault();
-  })
-})
-</script>

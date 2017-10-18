@@ -2,7 +2,7 @@
 
 
 <% @destinations.each do |destination| %>
-  <li><%= link_to "#{destination.location}", destination %>
+  <li><%= link_to "#{destination.location}", "/destinations/show" %>
     <button class="dest-index-more" data-id="<%=destination.id%>">More Info</button>
 
     <div id="more-<%= destination.id %>">
@@ -32,6 +32,6 @@
 
 <br></br>
 
-<% if current_user %>
+<!-- <% if current_user %>
   <%= link_to "New Destination", new_destination_path %>
-<% end %>
+<% end %> -->

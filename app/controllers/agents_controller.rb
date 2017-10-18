@@ -10,8 +10,8 @@ class AgentsController < ApplicationController
   # GET /agents/1
   # GET /agents/1.json
   def show
-    @destination = Destination.new
-    @agent = Agent.find(params[:id])
+    @destinations = @agent.destinations
+    @destination = @agent.destinations.build
     respond_to do |format|
       format.html {render :show}
       format.json {render json: @agent}
@@ -21,8 +21,6 @@ class AgentsController < ApplicationController
   # GET /agents/new
   def new
     @agent = Agent.new
-    render :layout => :false
-    @destination = @agent.desintations.new
   end
 
   # GET /agents/1/edit
@@ -47,27 +45,27 @@ class AgentsController < ApplicationController
 
   # PATCH/PUT /agents/1
   # PATCH/PUT /agents/1.json
-  def update
-    respond_to do |format|
-      if @agent.update(agent_params)
-        format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agent }
-      else
-        format.html { render :edit }
-        format.json { render json: @agent.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @agent.update(agent_params)
+  #       format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @agent }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @agent.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /agents/1
   # DELETE /agents/1.json
-  def destroy
-    @agent.destroy
-    respond_to do |format|
-      format.html { redirect_to agents_url, notice: 'Agent was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @agent.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to agents_url, notice: 'Agent was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   # def agent_data
   #   agent = Agent.find(params[:id])

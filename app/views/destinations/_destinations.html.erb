@@ -1,5 +1,5 @@
 <ol>
   <% @destinations.each do |destination| %>
-    <li><%= destination.location %></li>
+    <li><%= link_to "#{destination.location}", destination %></li>
   <% end %>
 </ol>

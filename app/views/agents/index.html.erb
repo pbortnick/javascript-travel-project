@@ -3,8 +3,9 @@
 <h1>Travel Agents</h1>
 
 <% @agents.each do |agent| %>
-  <li><%= link_to "#{agent.full_name}", agent %>
-  </li>
+  <ul style="list-style: none;">
+    <li><%= link_to "#{agent.id}. #{agent.full_name}", agent %></li>
+  </ul>
 <% end %>
 
 <br></br>

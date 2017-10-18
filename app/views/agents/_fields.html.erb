@@ -1,5 +1,4 @@
- <%= form_for @destination do |f| %>
-
+<%= form_for(@destination, :url => agent_destinations_path(@agent), :html => {:id => "destination-form"} ) do |f|  %>
    <p>
      <%= f.label :location%>
      <%= f.text_field :location%>
@@ -18,11 +17,6 @@
    <p>
      <%= f.label :weather_conditions %>
      <%= f.text_field :weather %>
-   </p>
-
-   <p>
-     <%= f.label :travel_agent %>
-     <%= f.text_field :agent_id %>
    </p>
 
    <%= f.submit %>

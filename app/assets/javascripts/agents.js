@@ -1,11 +1,79 @@
+$(function() {
+  $("#new_destination").on("submit", function(e) {
+    e.preventDefault();
+    var form = this;
+    // url to submit post request to
+    const url = this.action;
+    // form data
+    const data = {
+      'authenticity_token': $("input[name='authenticity_token']").val(),
+      'destination': {
+        'location': $("#destination_location").val()
+      }
+    };
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: function(response) {
+        // $("#destination_location").val("");
+        var $ol = $("div.destinations ol")
+        $ol.append(response);
+        form.reset();
+        $button = $('#a-d-submit')
+        $.rails.enableElement($button)
+        $button.removeAttr('disabled')
+      }
+    })
+  });
+});
+
+
+// $(function() {
+//   $("#new_destination").submit(function(e){
+//     e.preventDefault();
+//     const form = this;
+//     $.ajax({
+//         url: this.action,
+//         type: "POST",
+//         data: $(this).serialize(),
+//         success: function(result) {
+//           form.reset();
+//           var $ol = $("div.comments ol")
+//           $ol.append(result)
+//           debugger;
+//         }
+//     });
+//   })
+// });
+
+// $(function () {
+//   $("#destination-form").on("submit", function(e){
+//     e.preventDefault();
+//     const form = this;
+//     $.ajax({
+//       type: ($("input[name='_method']").val() || this.method),
+//       url: this.action,
+//       data: $(this).serialize(),
+//       success: function(response){
+//         debugger;
+//         form.reset();
+//         var $ol = $("div.destinations ol")
+//         $ol.append(response);
+//       }
+//     });
+//   });
+// })
+
 $(function () {
   $("a.load").on("click", function() {
-    var id = $(this).data("id");
-    $.get("/agents/" + id + ".json", function(data) {
-      data.destinations.forEach(function(destination) {
-        $(".destinations ol").append("<li>"+ destination.location + "</li>");
-      })
-    });
+    $(".destinations").show();
+  //   var id = $(this).data("id");
+  //   $.get("/agents/" + id + ".json", function(data) {
+  //     data.destinations.forEach(function(destination) {
+  //       $(".destinations ol").append("<li>"+ destination.location + "</li>");
+  //     })
+  //   });
   });
 });
 

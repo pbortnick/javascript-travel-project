@@ -22,7 +22,7 @@ $(function() {
       $(".price").text("Price: " + data.price);
       $(".trip-length").text("Trip Length: " + data.trip_length);
       $(".weather").text("Weather: " + data.weather);
-      $(".dest-more").empty();
+      // $(".dest-more").empty();
     });
   });
 });

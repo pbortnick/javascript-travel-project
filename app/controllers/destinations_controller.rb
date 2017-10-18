@@ -1,12 +1,14 @@
 class DestinationsController < ApplicationController
 
+  before_action :set_agent, except: [:show]
+
   # GET /destinations
   # GET /destinations.json
   def index
-    @destinations = Destination.all
+    @destinations = @agent.destinations
     respond_to do |format|
       format.html {render 'index.html', :layout => false}
-      format.json {render json: @destinations}
+      format.js {render 'index.js', :layout => false}
     end
   end
 
@@ -19,38 +21,38 @@ class DestinationsController < ApplicationController
       format.json {render json: @destination}
     end
   end
-  #
-  # GET /destinations/new
-  def new
-    @destination = Destination.new(agent_id: params[:agent_id])
-  end
+  # #
+  # # GET /destinations/new
+  # def new
+  #   @destination = Destination.new(agent_id: params[:agent_id])
+  # end
 
   # POST /destinations
   # POST /destinations.json
   def create
-    @destination = Destination.new(destination_params)
-
-    respond_to do |format|
-      if @destination.save
-        @agent = @destination.agent
-        format.html { redirect_to '/', notice: 'Destination was successfully created.' }
-        format.json { render :show, status: :created, location: @destination }
-      else
-        format.html { render :new }
-        format.json { render json: @destination.errors, status: :unprocessable_entity }
-      end
+    @destination = @agent.destinations.build(destination_params)
+    if @destination.save
+      # Render info I need
+      # comments show view
+      render "destinations/details", :layout => false
+    else
+      render "agents/show"
     end
+    # @destinations = @agent.destinations
+    # @destination.save
+    # render "agents/show"
   end
+
 
   # PATCH/PUT /destinations/1
   # PATCH/PUT /destinations/1.json
-  def update
-    if @destination.update(destination_params)
-      redirect_to destination_path
-    else
-      render :new, notice: 'Error in processing destination'
-    end
-  end
+  # def update
+  #   if @destination.update(destination_params)
+  #     redirect_to destination_path
+  #   else
+  #     render :new, notice: 'Error in processing destination'
+  #   end
+  # end
 
   # DELETE /destinations/1
   # DELETE /destinations/1.json
@@ -70,9 +72,9 @@ class DestinationsController < ApplicationController
 
   private
     #
-    # def set_agent
-    #   @agent = Agent.find(params[:agent_id])
-    # end
+    def set_agent
+      @agent = Agent.find(params[:agent_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     # def set_destination
     #   @destination = Destination.find(params[:id])
@@ -80,6 +82,6 @@ class DestinationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def destination_params
-      params.require(:destination).permit(:location, :price, :trip_length, :weather, :agent_id, :agent_name)
+      params.require(:destination).permit(:location, :price, :trip_length, :weather, :agent_id)
     end
 end
