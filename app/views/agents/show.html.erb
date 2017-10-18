@@ -4,8 +4,9 @@
 <a href="#" class="load" data-id="<%=@agent.id%>">Load Destinations</a>
 
 
-<div class="destinations" style="display:none">
-  <%= render 'destinations/destinations' %>
+<div class="destinations">
+  <ol>
+  </ol>
 </div>
 
 <%= form_for([@agent, @destination]) do |f|  %>

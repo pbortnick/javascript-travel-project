@@ -3,7 +3,7 @@
 Specs:
 - [x] Use jQuery for implementing new requirements
 - [x] Include a show resource rendered using jQuery and an Active Model Serialization JSON backend.
-- [x] Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
+- x Include an index resource rendered using jQuery and an Active Model Serialization JSON backend.
 - [x] Include at least one has_many relationship in information rendered via JSON and appended to the DOM.
 - [x] Use your Rails API and a form to create a resource and render the response without a page refresh.
 - [x] Translate JSON responses into js model objects.
@@ -16,5 +16,5 @@ Confirm
 - [x] You don't include changes in a commit that aren't related to the commit message
 
 Fixes
-- [] Make form dynamic  with on 'submit'
-- [] Ajax request to agents/1/destinations
+- [] Make form dynamic with on 'submit'
+- [x] Ajax request to agents/1/destinations

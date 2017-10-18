@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/auth/github', to: redirect('/users/auth/github')
 
   resources :agents do
-    resources :destinations #, only: [:index, :show, :new]
+    resources :destinations
   end
 
   resources :destinations
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get '/agents/destinations/new' => "agents#new"
 
+  get '/agents/destinations/:id' => "destinations#show"
   # get '/agents/:id/agent_data', to: 'agents#agent_data'
 
   get '/destinations/:id/destination_data', to: 'destinations#destination_data'

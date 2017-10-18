@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   $("#new_destination").on("submit", function(e) {
     e.preventDefault();
     var form = this;
@@ -8,7 +8,13 @@ $(function() {
     const data = {
       'authenticity_token': $("input[name='authenticity_token']").val(),
       'destination': {
-        'location': $("#destination_location").val()
+        'location': $("#destination_location").val(),
+        'price':
+        $("#destination_price").val(),
+        'trip_length':
+        $("#destination_trip_length").val(),
+        'weather':
+        $("#destination_weather").val()
       }
     };
     $.ajax({
@@ -16,13 +22,13 @@ $(function() {
       url: url,
       data: data,
       success: function(response) {
-        // $("#destination_location").val("");
         var $ol = $("div.destinations ol")
         $ol.append(response);
         form.reset();
         $button = $('#a-d-submit')
         $.rails.enableElement($button)
         $button.removeAttr('disabled')
+        $('.destinations ol li:first-child').remove();
       }
     })
   });
@@ -67,13 +73,14 @@ $(function() {
 
 $(function () {
   $("a.load").on("click", function() {
-    $(".destinations").show();
-  //   var id = $(this).data("id");
-  //   $.get("/agents/" + id + ".json", function(data) {
-  //     data.destinations.forEach(function(destination) {
-  //       $(".destinations ol").append("<li>"+ destination.location + "</li>");
-  //     })
-  //   });
+    // $('.destinations ol li:last-child').remove();
+    // $(".destinations").show();
+    var id = $(this).data("id");
+    $.get("/agents/" + id + "/destinations.json", function(data) {
+      data.map(function(destination) {
+        $(".destinations ol").append("<li><a href=destinations/" + destination.id +">" + destination.location + "</a></li>");
+      })
+    });
   });
 });
 
@@ -94,10 +101,12 @@ $(function() {
     $.get("/agents/" + nextId + ".json", function(data) {
       $(".js-next").attr("data-id", data.id);
       agent = new Name(data.first_name, data.last_name);
-      $("a.load").empty();
-      $(".form").empty();
+      // $("a.load").empty();
+      // $(".form").empty();
       $(".agentName").text(agent.fullName());
-      data.destinations.forEach(function(destination) {
+    })
+    $.get("/agents/" + nextId + "/destinations.json", function(data) {
+      data.destinations.map(function(destination) {
         $(".destinations ol").html("<li>"+ destination.location + "</li>")
       });
     });
