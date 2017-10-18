@@ -9,37 +9,36 @@
   </ol>
 </div>
 
-<p>Add New Destination for <%=@agent.first_name%>:</p>
 
 <div class="new_destination_agent" style="display:none">
-<%= form_for([@agent, @destination]) do |f|%>
-   <p>
-     <%= f.label :location%>
-     <%= f.text_field :location%>
-   </p>
 
-   <p>
-     <%= f.label :price %>
-     <%= f.text_field :price %>
-   </p>
+  <p>Add New Destination for <%=@agent.first_name%>:</p>
 
-   <p>
-     <%= f.label :trip_length_in_days %>
-     <%= f.text_field :trip_length %>
-   </p>
+  <%= form_for([@agent, @destination]) do |f|%>
+     <p>
+       <%= f.label :location%>
+       <%= f.text_field :location%>
+     </p>
 
-   <p>
-     <%= f.label :weather_conditions %>
-     <%= f.text_field :weather %>
-   </p>
+     <p>
+       <%= f.label :price %>
+       <%= f.text_field :price %>
+     </p>
 
-   <%= f.submit :id=> "a-d-submit" %>
-<% end %>
+     <p>
+       <%= f.label :trip_length_in_days %>
+       <%= f.text_field :trip_length %>
+     </p>
+
+     <p>
+       <%= f.label :weather_conditions %>
+       <%= f.text_field :weather %>
+     </p>
+
+     <%= f.submit :id=> "a-d-submit" %>
+  <% end %>
 </div>
 
 <br>
 
 <!-- <a href="#" class="js-next" data-id="<%=@agent.id%>">Next Agent</a> -->
-
-
-<%= link_to 'Back', agents_path %>

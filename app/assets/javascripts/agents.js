@@ -1,9 +1,9 @@
 $(function () {
   $("a.load").on("click", function() {
-    // $('.destinations ol li:last-child').remove();
-    // $(".destinations").show();
+    $('a.load').remove();
     $(".new_destination_agent").show();
     var id = $(this).data("id");
+    $(".agentName").append("'s destinations:")
     $.get("/agents/" + id + "/destinations.json", function(data) {
       data.map(function(destination) {
         $(".destinations ol").append("<li><a href=destinations/" + destination.id +">" + destination.location + "</a></li>");
@@ -42,7 +42,6 @@ $(function () {
         $button = $('#a-d-submit')
         $.rails.enableElement($button)
         $button.removeAttr('disabled')
-        // $('.destinations ol li:first-child').remove();
       }
     })
   });
