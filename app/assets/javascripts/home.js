@@ -6,7 +6,7 @@ $(function () {
       $("#more-" + id).append("Price: $" + destination.price + "<br>");
       $("#more-" + id).append("Trip Length: " + destination.trip_length + " days" + "<br>");
       $("#more-" + id).append("Weather: " + destination.weather + "<br>");
-      destination.agent_id === 1 ? $("#more-" + id).append("Agent: Pamela") : $("#more-" + id).append("Agent: Jason");
+      $("#more-" + id).append("Agent: " + destination.agent.first_name + "<br>");
     });
     e.preventDefault();
   });

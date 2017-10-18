@@ -18,11 +18,11 @@ $(function() {
     var nextId = parseInt($(".js-next-destination").attr("data-id")) + 1;
     $.get("/destinations/" + nextId + ".json", function(data) {
       $(".js-next-destination").attr("data-id", data["id"]);
-      $(".destinationLocation").text(data.location)
-      $(".price").text("Price: " + data.price);
-      $(".trip-length").text("Trip Length: " + data.trip_length);
-      $(".weather").text("Weather: " + data.weather);
-      // $(".dest-more").empty();
+      $("#destinationLocation").text(data.location)
+      $("#price").text("Price: " + data.price);
+      $("#trip-length").text("Trip Length: " + data.trip_length);
+      $("#weather").text("Weather: " + data.weather);
+      $("#agent").text("Agent: " + data.agent.first_name);
     });
   });
 });

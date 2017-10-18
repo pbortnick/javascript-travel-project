@@ -1,26 +1,21 @@
-<h1 class="destinationLocation"><%= @destination.location %></h1>
-<p>Price: $<%= @destination.price %></p>
-<p>Length: <%= @destination.trip_length %> days</p>
-<p>Weather Conditions: <%= @destination.weather %></p>
-
-<div id="more-<%= @destination.id %>">
-</div>
+<h1 id="destinationLocation"><%= @destination.location %></h1>
+<p id="price">Price: $<%= @destination.price %></p>
+<p id="trip-length">Length: <%= @destination.trip_length %> days</p>
+<p id="weather">Weather Conditions: <%= @destination.weather %></p>
+<p id="agent">Agent: <%= @destination.agent.first_name %></p>
 
 <br></br>
 
-<a href="#" class="dest-show-more" data-id="<%=@destination.id%>">More Info</a>
-
-<br>
 
 <a href="#" class="js-next-destination" data-id="<%=@destination.id%>">Next Destination</a>
 
-<br>
+<br></br>
 
 <% if current_user %>
   <%= link_to "Take this trip!", trip_path %>
 <% end %>
 
-<br>
+<br></br>
 
 <%= link_to 'Back', destinations_path %>
 
